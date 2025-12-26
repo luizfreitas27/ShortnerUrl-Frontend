@@ -23,6 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { Spinner } from "./ui/spinner";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -132,7 +133,7 @@ export default function LoginForm() {
                 className="w-full h-11 lg:h-14 text-base lg:text-lg bg-[#7d66ff]"
                 disabled={isPending}
               >
-                {isPending ? "Entrando..." : "Entrar"}
+                {isPending ? <Spinner/> : "Sign In"}
               </Button>
             </CardContent>
           </form>

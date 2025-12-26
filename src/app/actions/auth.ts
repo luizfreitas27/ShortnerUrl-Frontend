@@ -39,6 +39,13 @@ export async function authAction(_: any, formData: FormData) {
       maxAge: 60 * 60, // 1h
     });
 
+    cookieStore.set("username", username as string, {
+      httpOnly: false,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 60 * 60
+    })
+
     return { success: true };
   } catch (error) {
     console.error("Login error:", error);
@@ -54,10 +61,23 @@ export async function LogoutAction () {
 
   if (!token) {
     console.log("Token does not exist...")
-    return;
+    return { success: false};
   }
 
   cookieStore.delete("accessToken");
+  cookieStore.delete("username");
 
-  redirect("/login");
+  return { success: true };
+}
+
+export async function getUser() {
+  const cookieStore = await cookies();
+  const username = cookieStore.get("username")?.value;
+  const hasToken = cookieStore.has("accessToken");
+
+  if(!hasToken || !username) {
+    return null;
+  }
+
+  return { username };
 }

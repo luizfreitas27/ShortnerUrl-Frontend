@@ -246,7 +246,7 @@ export default function HomePage() {
               <span className="font-bold">ShortURL</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              2024 ShortURL. All rights reserved.
+              2025 ShortURL. All rights reserved.
             </p>
           </div>
         </div>

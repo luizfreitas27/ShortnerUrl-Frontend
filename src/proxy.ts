@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 export function proxy(request: NextRequest) {
   console.log("🔍 Proxy executando para:", request.nextUrl.pathname);
 
-  const token = request.cookies.get("accessToken");
+  const token = request.cookies.get("accessToken")?.value;
   console.log("🔑 Token encontrado:", !!token);
 
   if (request.nextUrl.pathname.startsWith("/dashboard")) {
